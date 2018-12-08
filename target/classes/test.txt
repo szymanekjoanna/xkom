@@ -1,0 +1,16 @@
+{"Cena":"111",
+  "Procesor":"aaaa",
+   "Pamięć RAM":"aaaa",
+   "Ilość gniazd pamięci":"aaaa",
+    "Wbudowane napędy optyczne":"aaaa",
+     "Typ ekranu":"aaaa",
+  "Przekątna ekranu":"aaaa",
+  "Rozdzielczość ekranu":"aaaa",
+  "Kamera internetowa":"aaaa",
+    "Bateria":"aaaa",
+   "Wysokość":"aaaa",
+   "Szerokość":"aaaa",
+  "Głębokość":"aaaa",
+ "Gwarancja":"aaaa"
+
+    }
