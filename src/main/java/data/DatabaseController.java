@@ -37,6 +37,7 @@ public class DatabaseController {
     }
 
     @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
+    @ResponseBody
     public String updateProduct(@ModelAttribute("id") Integer id,
                                 @ModelAttribute("nazwaProduktu") String nazwaProduktu,
                                 @ModelAttribute("cena") String cena,
@@ -45,9 +46,9 @@ public class DatabaseController {
                                 @ModelAttribute("bateria") String bateria,
                                 @ModelAttribute("waga") String waga,
                                 @ModelAttribute("szerokosc") String szerokosc,
-                           ModelMap modelMap) {
+                                ModelMap modelMap) {
         parameterService.updateProduct(id,nazwaProduktu,cena,kategoria,procesor,bateria,waga,szerokosc);
-        return "redirect:/database";
+        return "Produkt zostal zmieniony";
     }
 
     @RequestMapping(value = "/createTxtFile/{id}", method = RequestMethod.GET)

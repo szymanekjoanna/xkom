@@ -55,7 +55,7 @@ public class LaptopEntity {
     @JsonProperty(value = "Komponenty rozszerzone")
     private String komponentyRozszerzone;
     @JsonProperty(value = "Dodatkowe informacje")
-    private String IodatkoweInformacje;
+    private String dodatkoweInformacje;
     @JsonProperty(value = "Dźwięk")
     private String dzwiek;
     @JsonProperty(value = "Waga")
@@ -71,7 +71,7 @@ public class LaptopEntity {
     public LaptopEntity(Integer id, String cena, String nazwaProduktu, String procesor, String pamiecRAM, String iloscGniazdPamieci, String wbudowaneNapedyOptyczne,
                         String typEkranu, String przekatnaEkranu, String rozdzielczoscEkranu, String kameraInternetowa,
                         String bateria, String wysokosc, String szerokosc, String glebokosc, String gwarancja, String kartaGraficzna,
-                        String lacznosc, String dolaczoneAkcesoria, String komponentyRozszerzone, String iodatkoweInformacje,
+                        String lacznosc, String dolaczoneAkcesoria, String komponentyRozszerzone, String dodatkoweInformacje,
                         String dzwiek, String waga, String zainstalowanySystemOperacyjny, String dolaczoneOprogramowanie,
                         String kategoria) {
         this.id = id;
@@ -95,7 +95,7 @@ public class LaptopEntity {
         this.lacznosc = lacznosc;
         this.dolaczoneAkcesoria = dolaczoneAkcesoria;
         this.komponentyRozszerzone = komponentyRozszerzone;
-        IodatkoweInformacje = iodatkoweInformacje;
+        this.dodatkoweInformacje = dodatkoweInformacje;
         this.dzwiek = dzwiek;
         this.waga = waga;
         this.zainstalowanySystemOperacyjny = zainstalowanySystemOperacyjny;
@@ -255,11 +255,11 @@ public class LaptopEntity {
     }
 
     public String getIodatkoweInformacje() {
-        return IodatkoweInformacje;
+        return dodatkoweInformacje;
     }
 
     public void setIodatkoweInformacje(String iodatkoweInformacje) {
-        IodatkoweInformacje = iodatkoweInformacje;
+        dodatkoweInformacje = iodatkoweInformacje;
     }
 
     public String getDzwiek() {
@@ -346,7 +346,7 @@ public class LaptopEntity {
                 ", lacznosc=" + lacznosc +
                 ", dolaczoneAkcesoria=" + dolaczoneAkcesoria +
                 ", komponentyRozszerzone=" + komponentyRozszerzone +
-                ", IodatkoweInformacje=" + IodatkoweInformacje +
+                ", dodatkoweInformacje=" + dodatkoweInformacje +
                 ", Dźwięk=" + dzwiek +
                 ", Waga=" + waga +
                 ", zainstalowanySystemOperacyjny=" + zainstalowanySystemOperacyjny +
