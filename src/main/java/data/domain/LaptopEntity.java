@@ -306,10 +306,6 @@ public class LaptopEntity {
         return id;
     }
 
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-
     public void setValueByKey(String key, String value){
         switch (key){
             case "Nazwa produktu" : setNazwaProduktu(value); break;
@@ -319,8 +315,34 @@ public class LaptopEntity {
             case "Bateria" : setBateria(value); break;
             case "Waga" : setWaga(value); break;
             case "Szerokość" : setSzerokosc(value); break;
+            case "Pamięć RAM" : setPamiecRAM(value); break;
+            case "Typ ekranu" : setTypEkranu(value); break;
+            case "Głębokość" : setGlebokosc(value); break;
+            case "Gwarancja" : setGwarancja(value); break;
+            case "Karta graficzna" : setKartaGraficzna(value); break;
+            case "Dołączone akcesoria" : setDolaczoneAkcesoria(value); break;
+            case "Ilość gniazd pamięci" : setIloscGniazdPamieci(value); break;
+            case "Wbudowane napędy optyczne" : setWbudowaneNapedyOptyczne(value); break;
+            case "Przekątna ekranu" : setPrzekatnaEkranu(value); break;
+            case "Rozdzielczość ekranu" : setRozdzielczoscEkranu(value); break;
+            case "Kamera internetowa" : setKameraInternetowa(value); break;
+            case "Wysokość" : setWysokosc(value); break;
+            case "Łączność" : setLacznosc(value); break;
+            case "Komponenty rozszerzone" : setKomponentyRozszerzone(value); break;
+            case "Dodatkowe informacje" : setDodatkoweInformacje(value); break;
+            case "Dźwięk" : setDzwiek(value); break;
+            case "Dołączone oprogramowanie" : setDolaczoneOprogramowanie(value); break;
+            case "Zainstalowany system operacyjny" : setZainstalowanySystemOperacyjny(value); break;
             default: break;
         }
+    }
+
+    public String getDodatkoweInformacje() {
+        return dodatkoweInformacje;
+    }
+
+    public void setDodatkoweInformacje(String dodatkoweInformacje) {
+        this.dodatkoweInformacje = dodatkoweInformacje;
     }
 
     @Override

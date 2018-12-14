@@ -1,9 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
+
 <html>
 <head>
-
-
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 </head>
 <body class="text-center" >
 <jsp:include page = "header.jsp" />
@@ -211,6 +212,5 @@
 </script>
 
 <script src="/static/bootstrap-notify.js"></script>
-
 </body>
 </html>

@@ -57,7 +57,19 @@ public class ParameterService implements LaptopService {
                 oneLine.append(CSV_SEPARATOR);
                 oneLine.append(product.getCena().trim().length() == 0? "" : product.getCena());
                 oneLine.append(CSV_SEPARATOR);
-                //oneLine.append(product.getSzerokosc().trim().length() == 0? "" : product.getSzerokosc());
+                oneLine.append(product.getSzerokosc().trim().length() == 0? "" : product.getSzerokosc());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(product.getPamiecRAM().trim().length() == 0? "" : product.getPamiecRAM());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(product.getTypEkranu().trim().length() == 0? "" : product.getTypEkranu());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(product.getGlebokosc().trim().length() == 0? "" : product.getGlebokosc());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(product.getGwarancja().trim().length() == 0? "" : product.getGwarancja());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(product.getKartaGraficzna().trim().length() == 0? "" : product.getKartaGraficzna());
+                oneLine.append(CSV_SEPARATOR);
+                oneLine.append(product.getDolaczoneAkcesoria().trim().length() == 0? "" : product.getDolaczoneAkcesoria());
                 bw.write(oneLine.toString());
                 bw.newLine();
             }
