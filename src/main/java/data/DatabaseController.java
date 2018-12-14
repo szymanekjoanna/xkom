@@ -48,29 +48,30 @@ public class DatabaseController {
                                 @ModelAttribute("szerokosc") String szerokosc,
                            ModelMap modelMap) {
         parameterService.updateProduct(id,nazwaProduktu,cena,kategoria,procesor,bateria,waga,szerokosc);
-        return "Zupdatowano produkt";
+        return "Produkt zostal zmieniony";
     }
 
     @RequestMapping(value = "/createTxtFile/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String createTxtFile(@PathVariable("id") Integer id){
+    public String createTxtFile(@PathVariable("id") Integer id) throws FileNotFoundException, UnsupportedEncodingException {
         LaptopEntity laptop = parameterService.getProductById(id);
         try{
-            File file = new File("src\\main\\resources\\textFiles\\product"+id+".txt");
-            FileOutputStream f = new FileOutputStream(file);
-            ObjectOutputStream o = new ObjectOutputStream(f);
-            o.writeObject(laptop.toString());
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("src\\main\\resources\\textFiles\\product"+id+".txt"), "UTF-8"));
+            bw.write(laptop.toString());
             ProcessBuilder pb = new ProcessBuilder("Notepad.exe", "src\\main\\resources\\textFiles\\product"+id+".txt");
             pb.environment().put("LANG", "pl.UTF-8");
             pb.start();
-            o.close();
-            f.close();
-            return "Wygerenrowano nowy plik .txt";
+            bw.flush();
+            bw.close();
+
         } catch (Exception e) {
             e.printStackTrace();
             return "Nie udalo sie wygenerowac pliku .txt";
         }
+        return "Wygerenrowano nowy plik .txt";
     }
+
 
     @RequestMapping("/generateCsv")
     public String generateCsvFile() {

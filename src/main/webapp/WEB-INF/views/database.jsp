@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: szyma
+  Date: 25.11.2018
+  Time: 20:01
+  To change this template use File | Settings | File Templates.
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -72,8 +79,8 @@
                 </c:forEach>
             </tbody>
             </table>
-
-            <a class="btn btn-danger" href="/deleteDatabase" role="button">Empty</a>
+            <a class="btn btn-danger" href="/deleteDatabase" role="button">Wyczyść bazę</a>
+            <a class="btn btn-danger" href="/generateCsv" role="button">Generuj .csv</a>
             </div>
     </div>
 </div>
