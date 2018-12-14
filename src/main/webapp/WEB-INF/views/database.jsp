@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: szyma
-  Date: 25.11.2018
-  Time: 20:01
-  To change this template use File | Settings | File Templates.
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -13,33 +6,51 @@
 <mvc:annotation-driven ignoreDefaultModelOnRedirect="true" />
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Database</title>
-    <link href="<c:url value='/static/error.css'/>"  rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+<jsp:include page = "header.jsp" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
 <body>
+<div class="card" style="margin-top: 100px">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Baza Danych</h3>
+    <div class="card-body">
 
-    <div>
-        <button onclick="window.location.href='/homePage'">Powrót</button> <br><br>
-        <form action="/deleteDatabase">      <input type="submit" value="Wyczyść bazę"/>  </form>  <br>
-        <form action="/generateCsv">     <input type="submit" value="Generuj .csv"/>  </form>  <br><br>
-    </div>
-
-    <div align="center">
-        <table border="1">
-            <thead>
-                <th>L.p</th>
-                <th>Produkt</th>
-                <th>Cena</th>
-                <th>Kategoria</th>
-                <th>Procesor</th>
-                <th>Bateria</th>
-                <th>Waga</th>
-                <th>Szerokosc</th>
-                <th></th>
-            </thead>
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center"  id="userTable" >
+                <thead>
+                <tr>
+                    <th class="th-sm">Id
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Produkt
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Cena
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Kategoria
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Procesor
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Bateria
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Waga
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Szerokosc
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="no-sort">.txt</th>
+                    <th class="no-sort">Edit</th>
+                </tr>
+                </thead>
             <tbody>
                 <c:forEach var="product" items="${products}">
                     <tr bgcolor="#ffffff">
@@ -52,27 +63,33 @@
                         <td>${product.waga}</td>
                         <td>${product.szerokosc}</td>
                         <td><a href="/createTxtFile/${product.id}">Generuj .txt</a></td>
+                        <td><a href="/createTxtFile/${product.id}">Edit</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
-            <tfoot>
-                <form action="/updateProduct" method="post" enctype="application/x-www-form-urlencoded">
-                    <td><input type="text" name="id"></td>
-                    <td><input type="text" name="nazwaProduktu"></td>
-                    <td><input type="text" name="cena"></td>
-                    <td><input type="text" name="kategoria"></td>
-                    <td><input type="text" name="procesor"></td>
-                    <td><input type="text" name="bateria"></td>
-                    <td><input type="text" name="waga"></td>
-                    <td><input type="text" name="szerokosc"></td>
-                    <td><input type="submit" value="update"></td>
-                </form>
-            </tfoot>
-        </table>
+            </table>
+
+            <a class="btn btn-danger" href="/deleteDatabase" role="button">Wyczyść bazę</a>
+            <a class="btn btn-danger" href="/generateCsv" role="button">Generuj .csv</a>
+            </div>
     </div>
+</div>
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var userTable = $('#userTable').DataTable({
 
+            "columnDefs": [ {
+            "targets": 'no-sort',
+            "orderable": false,
+            "width": "10%"
+        } ]});
+        $('.dataTables_length').addClass('bs-select');
+
+    });
+
+</script>
 </body>
 
 </html>

@@ -1,75 +1,216 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<mvc:annotation-driven ignoreDefaultModelOnRedirect="true" />
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>X-com ETL</title>
-    <link href="<c:url value='/static/error.css'/>"  rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+
 </head>
 
+<body class="text-center" >
+<jsp:include page = "header.jsp" />
 
-<body>
-    <div align="center">
-
-        <c:url var="url" value="/homePage" />
-
-        <form method="post">
-            Co chcesz znaleźć na stronie https://www.x-kom.pl/?
-            <input type="text" name="itemToSearch">
-            <br><br>
-            <input type="submit" value="Extract"   formaction="/extract"  />    <br><br>
-            <input type="submit" value="Transform" formaction="/transform"/> <br><br>
-            <input type="submit" value="Load"      formaction="/load"/>      <br><br>
-            <input type="submit" value="ETL"       formaction="/etl"/>       <br><br>  <br><br>
-
-
-            <c:if test="${param.response == 'notfound'}">
-                <div class="alert alert-danger">
-                    <p>Nie znaleziono przedmiotu</p>
-                </div>
-            </c:if>
-            <c:if test="${param.response == 'extractNotFinished'}">
-                <div class="alert alert-danger">
-                    <p>Extract nie został wykonany</p>
-                </div>
-            </c:if>
-            <c:if test="${param.response == 'loadNotFinished'}">
-                <div class="alert alert-danger">
-                    <p>Transform nie został wykonany</p>
-                </div>
-            </c:if>
-            <c:if test="${param.response == 'itemToSearchNull'}">
-                <div class="alert alert-success">
-                    <p>Podaj przedmiot do wyszukania</p>
-                </div>
-            </c:if>
-
-            <%--<c:if test="${param.flag == 'true'}">--%>
-                <%--<div class="alert alert-success">--%>
-                    <%--<p>${param.response}</p>   <br><br>--%>
-                    <%--Co chcesz teraz zrobić? Wybierz odpowiedni przycisk :)--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-
-
-        </form>
-
-        <br><br>
+<div class="container" style="margin-top: 100px">
+	<div class="row justify-content-center" style="margin-bottom: 50px">
+                        <div class="col-12 col-md-10 col-lg-8">
+                        	<p>Wyszukaj produkty na stronie x-kom.pl:</p>
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" id="itemToSearch" name="itemToSearch" placeholder="Nazwa produktu">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto" style="margin-left: 20px">
+                                        <button class="btn btn-lg btn-primary" type="submit" id="triggerETL" name="triggerETL">ETL</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
     </div>
+</div>
 
-    <div align="center">
+<form>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                    <p>Wykonaj osobne akcje:</p>
+                    <button type="button" style="margin-bottom: 50px"class="btn btn-warning" id="triggerExtract" name="triggerExtract">Extract</button>
+                    <button type="button" style="margin-left: 10px; margin-bottom: 50px" class="btn btn-info" id="triggerTransform" name="triggerTransform">Transform</button>
+                    <button type="button" style="margin-left: 10px; margin-bottom: 50px" class="btn btn-success" id="triggerLoad" name="triggerLoad">Load</button>
+            </div>
+        <div class="col-md-4"></div>
+        </div>
+</form>
 
-    </div>
 
-    <div align="center">
-        <%--<form action="/showDatabase">      <input type="submit" value="Baza danych"/>      </form>  <br><br>--%>
-        <button onclick="window.location.href='/database'">Baza danych</button> <br><br>
+<script>
+    $(function(){
+        $('#triggerETL').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log("Hello from front");
+            var itemToSearch = $('input[name=itemToSearch]').val();
+            console.log(itemToSearch);
 
-    </div>
+            $.ajax({
+                url: "/etl",
+                type: "post",
+                data: {itemToSearch}
+            }).done(function(data){
+                console.log(data)
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'success'
+                });
+            }).fail(function(data){
+                console.log(xhr);
+                console.log(status);
+                console.log("________________________");
+                console.log(error);
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'danger'
+                })
+            })
+        })
+    });
+
+    $(function(){
+        $('#triggerExtract').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log("Hello from front");
+            var itemToSearch = $('input[name=itemToSearch]').val();
+            console.log(itemToSearch);
+
+            $.ajax({
+                url: "/extract",
+                type: "post",
+                data: {itemToSearch}
+            }).done(function(data){
+                console.log(data)
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'success'
+                });
+            }).fail(function(data){
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'danger'
+                })
+            })
+        })
+    });
+
+    $(function(){
+        $('#triggerTransform').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log("Hello from front");
+            //var itemToSearch = $('input[name=itemToSearch]').val();
+            //console.log(itemToSearch);
+
+            $.ajax({
+                url: "/transform",
+                type: "post",
+                //data: {itemToSearch}
+            }).done(function(data){
+                console.log(data)
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'success'
+                });
+            }).fail(function(data){
+                console.log(xhr);
+                console.log(status);
+                console.log("________________________");
+                console.log(error);
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'danger'
+                })
+            })
+        })
+    });
+
+    $(function(){
+        $('#triggerLoad').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log("Hello from front");
+            //var itemToSearch = $('input[name=itemToSearch]').val();
+            //console.log(itemToSearch);
+
+            $.ajax({
+                url: "/load",
+                type: "post",
+                //data: {itemToSearch}
+            }).done(function(data){
+                console.log(data)
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'success'
+                });
+            }).fail(function(data){
+                console.log(xhr);
+                console.log(status);
+                console.log("________________________");
+                console.log(error);
+                $.notify({
+                    message: data
+                },{
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    },
+                    type: 'danger'
+                })
+            })
+        })
+    });
+
+</script>
+
+<script src="/static/bootstrap-notify.js"></script>
 
 </body>
 </html>
