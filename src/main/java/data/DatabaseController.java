@@ -37,6 +37,7 @@ public class DatabaseController {
     }
 
     @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
+    @ResponseBody
     public String updateProduct(@ModelAttribute("id") Integer id,
                                 @ModelAttribute("nazwaProduktu") String nazwaProduktu,
                                 @ModelAttribute("cena") String cena,
@@ -47,10 +48,11 @@ public class DatabaseController {
                                 @ModelAttribute("szerokosc") String szerokosc,
                            ModelMap modelMap) {
         parameterService.updateProduct(id,nazwaProduktu,cena,kategoria,procesor,bateria,waga,szerokosc);
-        return "redirect:/database";
+        return "Zupdatowano produkt";
     }
 
     @RequestMapping(value = "/createTxtFile/{id}", method = RequestMethod.GET)
+    @ResponseBody
     public String createTxtFile(@PathVariable("id") Integer id){
         LaptopEntity laptop = parameterService.getProductById(id);
         try{
@@ -63,10 +65,11 @@ public class DatabaseController {
             pb.start();
             o.close();
             f.close();
+            return "Wygerenrowano nowy plik .txt";
         } catch (Exception e) {
             e.printStackTrace();
+            return "Nie udalo sie wygenerowac pliku .txt";
         }
-        return "redirect:/database";
     }
 
     @RequestMapping("/generateCsv")

@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -49,8 +51,10 @@ public class MyController {
     }
 
     @RequestMapping(value = "/extract", method = RequestMethod.POST)
+    @ResponseBody
     public String extract(@RequestParam("itemToSearch") String itemToSearch){
         String SERACH_ITEAM_URL = URL+itemToSearch;
+        int counter = 0;
         try {
             if (itemToSearch.equals(""))
                 return "redirect:/homePage?response=itemToSearchNull";
@@ -102,29 +106,32 @@ public class MyController {
                     try (FileWriter file = new FileWriter(fileName)) {
                         file.write(o.toJSONString());
                         file.flush();
+                        counter++;
                     } catch (IOException e) {
                         e.printStackTrace();
+                        return "Extractowano: " + counter + " rekordow";
                     }
                     driver.navigate().back();
                 }
                 driver.close();
 //                return "redirect:/homePage?response="+itemToSearch+"&flag=true";
-                return "redirect:/homePage";
+                return "Extractowano: " + counter + " rekordow";
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return "Extractowano: " + counter + " rekordow";
         }
-        return "homePage";
     }
 
 
     @RequestMapping(value = "/transform")
+    @ResponseBody
     public String transform(){
 
         File directory = new File("src\\main\\resources\\files");
 
         if(directory.listFiles().length==0)
-            return "redirect:/homePage?response=extractNotFinished";
+            return "Nie mozna przeprowadzic operacji transform len=0";
 
         laptopList.clear();
         ObjectMapper mapper = new ObjectMapper();
@@ -147,35 +154,45 @@ public class MyController {
             }
         }
         parameterService.purgeDirectory();
-        return "redirect:/homePage";
+        return "Przeprowadzono transformacje: " + laptopList.size() + " rekordow";
     }
 
     @RequestMapping(value = "/load")
+    @ResponseBody
     public String load(){
         if(laptopList.size()==0)
-            return "redirect:/homePage?response=loadNotFinished";
+            return "Brak rekordow do zaladowania.";
         for (LaptopEntity laptop: laptopList) {
             if(parameterService.isLaptop(laptop))
                 parameterService.addLaptop(laptop);
         }
 //        parameterService.addLaptops(laptopList);
+        int lapSize = laptopList.size();
         parameterService.purgeDirectory();
         laptopList.clear();
-        return "redirect:/homePage";
+        return "Zaladowano: " + lapSize + " rekordow.";
     }
 
-    @RequestMapping(value = "/etl")
+    @RequestMapping(value = "/etl", method = RequestMethod.POST)
+    @ResponseBody
     public String etl(@RequestParam("itemToSearch") String itemToSearch){
-        if (itemToSearch.equals(""))
-            return "redirect:/homePage?response=itemToSearchNull";
+
+        System.out.println(itemToSearch);
+        ModelAndView mav = new ModelAndView();
+        if (itemToSearch.equals("")){
+            return "Zostawiles pole wyszukiwania puste";
+        }
 
         extract(itemToSearch);
 
         if(new File("src\\main\\resources\\files").listFiles().length==0)
-            return "redirect:/homePage?response=notfound";
+            return "Nic nie znaleziono :(";
+            //return "redirect:/homePage?response=notfound";
 
         transform();
-        load();
-        return "redirect:/homePage";
+        String loadAmount;
+        loadAmount = load();
+        return "proces ETL zakonczono z sukcesem! :)"  + loadAmount;
+        //return "redirect:/homePage";
     }
 }
