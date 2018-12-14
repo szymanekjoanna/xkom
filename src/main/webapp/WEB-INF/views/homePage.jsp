@@ -3,8 +3,8 @@
 <html>
 <head>
 
-</head>
 
+</head>
 <body class="text-center" >
 <jsp:include page = "header.jsp" />
 
@@ -30,7 +30,7 @@
                             </form>
                         </div>
                         <!--end of col-->
-    </div>
+                    </div>
 </div>
 
 <form>

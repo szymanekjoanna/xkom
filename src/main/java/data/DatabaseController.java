@@ -52,9 +52,9 @@ public class DatabaseController {
     }
 
     @RequestMapping(value = "/createTxtFile/{id}", method = RequestMethod.GET)
+    @ResponseBody
     public String createTxtFile(@PathVariable("id") Integer id) throws FileNotFoundException, UnsupportedEncodingException {
         LaptopEntity laptop = parameterService.getProductById(id);
-
         try{
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream("src\\main\\resources\\textFiles\\product"+id+".txt"), "UTF-8"));
@@ -64,11 +64,14 @@ public class DatabaseController {
             pb.start();
             bw.flush();
             bw.close();
+
         } catch (Exception e) {
             e.printStackTrace();
+            return "Nie udalo sie wygenerowac pliku .txt";
         }
-        return "redirect:/database";
+        return "Wygerenrowano nowy plik .txt";
     }
+
 
     @RequestMapping("/generateCsv")
     public String generateCsvFile() {
