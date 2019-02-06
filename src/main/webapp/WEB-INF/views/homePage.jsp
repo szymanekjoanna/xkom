@@ -12,7 +12,7 @@
 <div class="container" style="margin-top: 100px">
 	<div class="row justify-content-center" style="margin-bottom: 50px">
                         <div class="col-12 col-md-10 col-lg-8">
-                        	<p>Wyszukaj produkty na stronie x-kom.pl:</p>
+                        	<p>Wyszukaj produkty na stronie x-kom.pl: </p>
                             <form class="card card-sm">
                                 <div class="card-body row no-gutters align-items-center">
                                     <div class="col-auto">

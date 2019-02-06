@@ -1,0 +1,8 @@
+HP 15 i3-5005U/8GB/120/DVD:, Cena=1 529,00 zł, Kategoria=Laptopy i tablety, Procesor=Intel Core i3-5005U (2 rdzenie, 2.00 GHz, 3 MB cache), pamiecRAM=8 GB (SO-DIMM DDR3, 1600 MHz), iloscGniazdPamieci=null, wbudowaneNapedyOptyczne=Nagrywarka DVD+/-RW DualLayer, typEkranu=Matowy, LED, przekatnaEkranu=15,6", rozdzielczoscEkranu=1366 x 768 (HD), kameraInternetowa=0.3 Mpix, Bateria=3-komorowa, 2850 mAh, Li-Ion, wysokosc=25 mm, Szerokość=380 mm, glebokosc=254 mm, gwarancja=24 miesiące (gwarancja x-kom sp. z o.o.), kartaGraficzna=Intel HD Graphics 5500, lacznosc=LAN 10/100/1000 Mbps
+Wi-Fi 802.11 b/g/n
+Moduł Bluetooth, dolaczoneAkcesoria=Zasilacz, komponentyRozszerzone=Dysk i pamięć RAM rozszerzona na profesjonalnej linii montażowej x-kom, dodatkoweInformacje=Wydzielona klawiatura numeryczna
+Wielodotykowy, intuicyjny touchpad
+Możliwość zabezpieczenia linką (port Kensington Lock)
+Szyfrowanie TPM, Dźwięk=Wbudowane głośniki stereo
+Wbudowany mikrofon
+Zintegrowana karta dźwiękowa zgodna z Intel High Definition Audio, Waga=1,98 kg (z baterią), zainstalowanySystemOperacyjny=Brak systemu, dolaczoneOprogramowanie=null

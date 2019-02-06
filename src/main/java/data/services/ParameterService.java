@@ -63,14 +63,22 @@ public class ParameterService implements LaptopService {
                 oneLine.append(CSV_SEPARATOR);
                 oneLine.append(product.getTypEkranu().trim().length() == 0? "" : product.getTypEkranu());
                 oneLine.append(CSV_SEPARATOR);
-                oneLine.append(product.getGlebokosc().trim().length() == 0? "" : product.getGlebokosc());
-                oneLine.append(CSV_SEPARATOR);
-                oneLine.append(product.getGwarancja().trim().length() == 0? "" : product.getGwarancja());
-                oneLine.append(CSV_SEPARATOR);
-                oneLine.append(product.getKartaGraficzna().trim().length() == 0? "" : product.getKartaGraficzna());
-                oneLine.append(CSV_SEPARATOR);
+                if(product.getGlebokosc()!=null) {
+                    oneLine.append(product.getGlebokosc().trim().length() == 0 ? "" : product.getGlebokosc());
+                    oneLine.append(CSV_SEPARATOR);
+                }
+                if(product.getGlebokosc()!=null) {
+                    oneLine.append(product.getGwarancja().trim().length() == 0 ? "" : product.getGwarancja());
+                    oneLine.append(CSV_SEPARATOR);
+                }
+                if(product.getGlebokosc()!=null) {
+                    oneLine.append(product.getKartaGraficzna().trim().length() == 0 ? "" : product.getKartaGraficzna());
+                    oneLine.append(CSV_SEPARATOR);
+                }
+                if(product.getGlebokosc()!=null) {
                 oneLine.append(product.getDolaczoneAkcesoria().trim().length() == 0? "" : product.getDolaczoneAkcesoria());
                 bw.write(oneLine.toString());
+                }
                 bw.newLine();
             }
             bw.flush();

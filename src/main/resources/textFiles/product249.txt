@@ -1,0 +1,4 @@
+Amazon Kindle Touch 8 2016 special offer biały:, Cena=348,00 zł, Kategoria=Laptopy i tablety, Procesor=null, pamiecRAM=512 MB DDR3, iloscGniazdPamieci=null, wbudowaneNapedyOptyczne=null, typEkranu=Dotykowy
+E-Ink Pearl, przekatnaEkranu=6", rozdzielczoscEkranu=800 x 600, kameraInternetowa=null, Bateria=null, wysokosc=160 mm, Szerokość=115 mm, glebokosc=null, gwarancja=12 miesięcy (gwarancja sprzedawcy), kartaGraficzna=null, lacznosc=Wi-Fi 802.11 b/g/n
+Moduł Bluetooth, dolaczoneAkcesoria=Kabel USB, komponentyRozszerzone=null, dodatkoweInformacje=Brak obsługi urządzenia w języku polskim
+Wersja z reklamami, Dźwięk=null, Waga=161 g, zainstalowanySystemOperacyjny=null, dolaczoneOprogramowanie=null
